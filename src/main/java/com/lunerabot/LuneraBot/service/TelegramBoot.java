@@ -41,11 +41,17 @@ public class TelegramBoot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "LuneraScoreBot";
+        // PROD Bot
+    	// return "LuneraScoreBot";
+    	// DEV Bot
+    	return "LuneraDevBot";
     }
 
     @Override
     public String getBotToken() {
-        return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
+    	// PROD Bot
+        // return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
+    	// DEV Bot
+    	return "5784608604:AAHGwrv2LQiLw2xFewgkSd0TLjkj1Ok9yz8";
     }
 }
