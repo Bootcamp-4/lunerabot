@@ -11,8 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class GitHubController {
 
 	@PostMapping(path = "/payload")
-	public List<Commit> getScores(@RequestBody GitHubPushEventDto event) {
+	public Object getScores(@RequestBody GitHubPushEventDto event) {
 		List<Commit> commits = event.getCommits();
-		return commits;
+
+		for (Commit commit : commits) {
+			boolean containsTeamData = commit.getModifiedFiles().contains("src/main/resources/teamdata.json");
+
+			if (containsTeamData) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
