@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TelegramBoot extends TelegramLongPollingBot {
+public class TelegramBot extends TelegramLongPollingBot {
 	
 	private List<Long> chatIds = new ArrayList<>();
+	private String currentWinners;
 
 	public void updateScores(String winners) {
 		for (Long chatId : chatIds) {
@@ -20,6 +21,7 @@ public class TelegramBoot extends TelegramLongPollingBot {
 
 			try {
 				execute(message);
+				currentWinners = winners;
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
@@ -31,8 +33,6 @@ public class TelegramBoot extends TelegramLongPollingBot {
 		// Se obtiene el mensaje escrito por el usuario
 		final String messageTextReceived = update.getMessage().getText();
 
-		System.out.println("Escribieron en el bot " + messageTextReceived);
-		int[] numeros = { 1, 2, 3, 4, 5, 6, 7 };
 		// Se obtiene el id de chat del usuario
 		final long chatId = update.getMessage().getChatId();
 		if (!chatIds.contains(chatId)) {
@@ -40,21 +40,15 @@ public class TelegramBoot extends TelegramLongPollingBot {
 		}
 		
 		// Se crea un objeto mensaje
-		SendMessage message = new SendMessage();
-		message.setChatId(chatId);
-		String s = "";
-		for (int numero : numeros) {
-			s += numero + "\n";
-		}
-		message.setText("Gracias por escribirnos fiera, mastodonte, CRACK");
-		// message.setText(s);
+		String text = "Welcome to LuneraScoreBot! We will update you when scores of Solera's Bootcamp 4 change.";
+		SendMessage message = SendMessage.builder().chatId(chatId).text(text).build();
+
 		try {
 			// Se envía el mensaje
 			execute(message);
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
