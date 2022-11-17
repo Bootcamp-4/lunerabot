@@ -30,21 +30,20 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
-		// Se obtiene el mensaje escrito por el usuario
+		// Bot gets message written by the user
 		final String messageTextReceived = update.getMessage().getText();
 
-		// Se obtiene el id de chat del usuario
+		// Bot gets users chatId
 		final long chatId = update.getMessage().getChatId();
 		if (!chatIds.contains(chatId)) {
 			chatIds.add(chatId);
 		}
-		
-		// Se crea un objeto mensaje
+
 		String text = "Welcome to LuneraScoreBot! We will update you when scores of Solera's Bootcamp 4 change.";
 		SendMessage message = SendMessage.builder().chatId(chatId).text(text).build();
 
 		try {
-			// Se envía el mensaje
+			// Message is sent to users
 			execute(message);
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
@@ -53,17 +52,11 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public String getBotUsername() {
-		// PROD Bot
-		// return "LuneraScoreBot";
-		// DEV Bot
-		return "LuneraDevBot";
+		return "LuneraScoreBot";
 	}
 
 	@Override
 	public String getBotToken() {
-		// PROD Bot
-		// return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
-		// DEV Bot
-		return "5784608604:AAHGwrv2LQiLw2xFewgkSd0TLjkj1Ok9yz8";
+		return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
 	}
 }
