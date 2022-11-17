@@ -6,17 +6,24 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TelegramBoot extends TelegramLongPollingBot {
+	
+	private List<Long> chatIds = new ArrayList<>();
 
-	public void updateScores() {
-		SendMessage message = SendMessage.builder().chatId("1001722891281").text("Hi").build();
-		try {
-			execute(message);
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
+	public void updateScores(String winners) {
+		for (Long chatId : chatIds) {
+			SendMessage message = SendMessage.builder().chatId(chatId).text(winners).build();
+
+			try {
+				execute(message);
+			} catch (TelegramApiException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 
 	@Override
@@ -28,13 +35,16 @@ public class TelegramBoot extends TelegramLongPollingBot {
 		int[] numeros = { 1, 2, 3, 4, 5, 6, 7 };
 		// Se obtiene el id de chat del usuario
 		final long chatId = update.getMessage().getChatId();
-
+		if (!chatIds.contains(chatId)) {
+			chatIds.add(chatId);
+		}
+		
 		// Se crea un objeto mensaje
 		SendMessage message = new SendMessage();
 		message.setChatId(chatId);
 		String s = "";
-		for (int i = 0; i < numeros.length; i++) {
-			s += numeros[i] + "\n";
+		for (int numero : numeros) {
+			s += numero + "\n";
 		}
 		message.setText("Gracias por escribirnos fiera, mastodonte, CRACK");
 		// message.setText(s);

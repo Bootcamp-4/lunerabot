@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot.utils;
+/* package com.lunerabot.LuneraBot.utils;
 
 import java.net.MalformedURLException;
 
@@ -15,3 +15,4 @@ class JsonReaderTests {
 	}
 
 }
+*/
