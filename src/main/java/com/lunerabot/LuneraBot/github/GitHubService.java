@@ -45,16 +45,16 @@ public class GitHubService {
         return TeamScore;
     }
         
+   
         public String getMessage(Map<String, Integer> teamScore) {
         	String message = "";
         String[] leaders = getLeaders(teamScore).split("/");
         String equipos = leaders[0];
         if(equipos.split(",").length>1) {
-        	message = "There is a tie between" + equipos.substring(0, equipos.length()-1) + "with " + leaders[1] + " points.";	
+        	message = "There is a tie between" + equipos.substring(0, equipos.length()-1) + " with " + leaders[1] + " points.";	
         }else {
-        	message = "The leader is " + equipos.substring(0, equipos.length()-1) + "with " + leaders[1] + " points.";	
+        	message = "The leader is " + equipos.substring(0, equipos.length()-1) + " with " + leaders[1] + " points.";	
         }
-        System.out.println(message);
         return message;
     }
 
@@ -73,7 +73,7 @@ public class GitHubService {
     	int maxValue = -1;
     	for(String i: teams.keySet()) {
     		if(teams.get(i) == maxValue) {
-    			leaders += " " + i ;
+    			leaders += " " + i + "," ;
     		}else if(teams.get(i) > maxValue){
     			leaders = " " + i + ",";
     			maxValue = teams.get(i);
