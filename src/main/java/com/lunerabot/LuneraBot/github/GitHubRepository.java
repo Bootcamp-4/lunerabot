@@ -16,7 +16,6 @@ public class GitHubRepository {
                     mapper.readValue(new URL("https://raw.githubusercontent.com/Bootcamp-4/lunerabot/main/src/main/resources/teamdata.json"), Scores.class);
             return scores.getTeamData();
         } catch (Exception e) {
-            e.getMessage();
             return null;
         }
     }
