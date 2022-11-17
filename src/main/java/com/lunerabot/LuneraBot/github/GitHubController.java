@@ -1,15 +1,22 @@
 package com.lunerabot.LuneraBot.github;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class GitHubController {
 
+	@Autowired
+	private GitHubService service;
+
 	@PostMapping(path = "/payload")
-	public String helloWorld() {
-		return "Hello World!";
+	public void getLeader(@RequestBody GitHubPushEventDto event) {
+		List<Commit> commits = event.getCommits();
+		service.getLeader(commits);
 	}
 }
