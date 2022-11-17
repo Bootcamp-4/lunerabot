@@ -6,19 +6,24 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TelegramBoot extends TelegramLongPollingBot {
 	
-	private Long userChatId;
+	private List<Long> chatIds = new ArrayList<>();
 
 	public void updateScores(String winners) {
-		SendMessage message = SendMessage.builder().chatId(userChatId).text(winners).build();
-		try {
-			execute(message);
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
+		for (Long chatId : chatIds) {
+			SendMessage message = SendMessage.builder().chatId(chatId).text(winners).build();
 
+			try {
+				execute(message);
+			} catch (TelegramApiException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -30,7 +35,9 @@ public class TelegramBoot extends TelegramLongPollingBot {
 		int[] numeros = { 1, 2, 3, 4, 5, 6, 7 };
 		// Se obtiene el id de chat del usuario
 		final long chatId = update.getMessage().getChatId();
-		userChatId = chatId;
+		if (!chatIds.contains(chatId)) {
+			chatIds.add(chatId);
+		}
 		
 		// Se crea un objeto mensaje
 		SendMessage message = new SendMessage();
