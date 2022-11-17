@@ -43,8 +43,8 @@ public class TelegramBoot extends TelegramLongPollingBot {
 		SendMessage message = new SendMessage();
 		message.setChatId(chatId);
 		String s = "";
-		for (int i = 0; i < numeros.length; i++) {
-			s += numeros[i] + "\n";
+		for (int numero : numeros) {
+			s += numero + "\n";
 		}
 		message.setText("Gracias por escribirnos fiera, mastodonte, CRACK");
 		// message.setText(s);
