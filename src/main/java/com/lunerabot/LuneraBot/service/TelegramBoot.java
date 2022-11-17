@@ -8,9 +8,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
 public class TelegramBoot extends TelegramLongPollingBot {
+	
+	private Long userChatId;
 
-	public void updateScores() {
-		SendMessage message = SendMessage.builder().chatId("1001722891281").text("Hi").build();
+	public void updateScores(String winners) {
+		SendMessage message = SendMessage.builder().chatId(userChatId).text(winners).build();
 		try {
 			execute(message);
 		} catch (TelegramApiException e) {
@@ -28,7 +30,8 @@ public class TelegramBoot extends TelegramLongPollingBot {
 		int[] numeros = { 1, 2, 3, 4, 5, 6, 7 };
 		// Se obtiene el id de chat del usuario
 		final long chatId = update.getMessage().getChatId();
-
+		userChatId = chatId;
+		
 		// Se crea un objeto mensaje
 		SendMessage message = new SendMessage();
 		message.setChatId(chatId);
