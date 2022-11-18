@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GitHubRepositoryTests {
 
-    private GitHubRepository repo = new GitHubRepository();
+    private final GitHubRepository repo = new GitHubRepository();
 
     @Test
     public void GitHubController_WhenGETPayload_MustReturnsAStringWithTheUniqueLeader() {
