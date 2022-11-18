@@ -1,6 +1,6 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
-import com.lunerabot.LuneraBot.service.TelegramBot;
+import com.lunera.bot.telegram.Bot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class GitHubService {
     private GitHubRepository repo;
 
     @Autowired
-    private TelegramBot bot;
+    private Bot bot;
 
     // This method return obtain the JSON from the URL and print the leaders
     public void getLeader(List<Commit> commits) {

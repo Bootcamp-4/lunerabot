@@ -1,7 +1,6 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

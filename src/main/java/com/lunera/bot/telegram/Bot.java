@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot.service;
+package com.lunera.bot.telegram;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TelegramBot extends TelegramLongPollingBot {
+public class Bot extends TelegramLongPollingBot {
 	
 	private List<Long> chatIds = new ArrayList<>();
 	private String currentWinners;
@@ -52,11 +52,13 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public String getBotUsername() {
-		return "LuneraScoreBot";
+		return "LuneraDevBot";
+		// return "LuneraScoreBot";
 	}
 
 	@Override
 	public String getBotToken() {
-		return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
+		return "5677874207:AAESJ7DdhGX4acHwoSjKCDIs3fUecsX_SDo";
+		// return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
 	}
 }

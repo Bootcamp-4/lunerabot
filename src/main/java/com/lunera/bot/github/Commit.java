@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
 import java.util.ArrayList;
 import java.util.List;

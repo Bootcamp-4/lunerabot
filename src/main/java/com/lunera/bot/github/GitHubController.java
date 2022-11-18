@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
 import org.springframework.web.bind.annotation.RestController;
 
