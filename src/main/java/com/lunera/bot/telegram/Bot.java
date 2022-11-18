@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 public class Bot extends TelegramLongPollingBot {
 
-	private final String BOT_TOKEN = "5677874207:AAESJ7DdhGX4acHwoSjKCDIs3fUecsX_SDo";
-	private final String BOT_USERNAME = "LuneraDevBot";
+	private final String BOT_TOKEN = "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
+	private final String BOT_USERNAME = "LuneraScoreBot";
 	private List<Long> chatIds = new ArrayList<>();
 
 	public void updateScores(String winners) {
@@ -50,12 +50,10 @@ public class Bot extends TelegramLongPollingBot {
 	@Override
 	public String getBotUsername() {
 		return BOT_USERNAME;
-		// return "LuneraScoreBot";
 	}
 
 	@Override
 	public String getBotToken() {
 		return BOT_TOKEN;
-		// return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
 	}
 }
