@@ -77,6 +77,10 @@
         {
           "name": "Desarrollo API C#",
           "puntos": 5
+        },
+        {
+          "name": "Actividad de prueba",
+          "puntos": 35
         }
       ]
     },
