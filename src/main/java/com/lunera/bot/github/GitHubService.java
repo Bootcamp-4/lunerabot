@@ -1,6 +1,6 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
-import com.lunerabot.LuneraBot.service.TelegramBot;
+import com.lunera.bot.telegram.Bot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class GitHubService {
     private GitHubRepository repo;
 
     @Autowired
-    private TelegramBot bot;
+    private Bot bot;
 
     // This method return obtain the JSON from the URL and print the leaders
     public void getLeader(List<Commit> commits) {
@@ -33,7 +33,7 @@ public class GitHubService {
     // names as key and its points as values
     public Map<String, Integer> getTeamScore() {
         List<Team> teams = repo.getScoresFromJson();
-        Map<String, Integer> teamScore = new HashMap();
+        Map<String, Integer> teamScore = new HashMap<>();
 
         for (Team team : teams) {
             List<Task> tasks = team.getTasks();
@@ -53,17 +53,15 @@ public class GitHubService {
     }
 
     public String getMessage(Map<String, Integer> teamScore) {
-        String message = "";
         String[] leadersWithScoreAtTheEnd = getLeadersStringWithScore(teamScore).split("/");
         String teams = leadersWithScoreAtTheEnd[0];
         String teamsNames = teams.substring(0, teams.length() - 1).toUpperCase();
 
         if (teams.split(",").length > 1) {
-            message = "There is a tie!\n\uD83E\uDD47 |" + teamsNames + "\n\uD83C\uDF96 | " + leadersWithScoreAtTheEnd[1] + " POINTS";
-        } else {
-            message = "The leader is:\n\uD83E\uDD47 |" + teamsNames + "\n\uD83C\uDF96 | " + leadersWithScoreAtTheEnd[1] + " POINTS";
+            return "There is a tie!\n\uD83E\uDD47 |" + teamsNames + "\n\uD83C\uDF96 | " + leadersWithScoreAtTheEnd[1] + " POINTS";
         }
-        return message;
+
+        return "The leader is:\n\uD83E\uDD47 |" + teamsNames + "\n\uD83C\uDF96 | " + leadersWithScoreAtTheEnd[1] + " POINTS";
     }
 
     public static String getLeadersStringWithScore(Map<String, Integer> teams) {

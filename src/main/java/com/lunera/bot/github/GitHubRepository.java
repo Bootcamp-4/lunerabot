@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;

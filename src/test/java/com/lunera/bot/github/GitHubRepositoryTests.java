@@ -1,7 +1,6 @@
-package com.lunerabot.LuneraBot.github;
+package com.lunera.bot.github;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GitHubRepositoryTests {
 
-    private GitHubRepository repo = new GitHubRepository();
+    private final GitHubRepository repo = new GitHubRepository();
 
     @Test
     public void GitHubController_WhenGETPayload_MustReturnsAStringWithTheUniqueLeader() {

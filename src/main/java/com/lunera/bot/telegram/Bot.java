@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot.service;
+package com.lunera.bot.telegram;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TelegramBot extends TelegramLongPollingBot {
-	
+public class Bot extends TelegramLongPollingBot {
+
+	private final String BOT_TOKEN = "5677874207:AAESJ7DdhGX4acHwoSjKCDIs3fUecsX_SDo";
+	private final String BOT_USERNAME = "LuneraDevBot";
 	private List<Long> chatIds = new ArrayList<>();
-	private String currentWinners;
 
 	public void updateScores(String winners) {
 		for (Long chatId : chatIds) {
@@ -21,7 +22,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 			try {
 				execute(message);
-				currentWinners = winners;
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
@@ -30,9 +30,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
-		// Bot gets message written by the user
-		final String messageTextReceived = update.getMessage().getText();
-
 		// Bot gets users chatId
 		final long chatId = update.getMessage().getChatId();
 		if (!chatIds.contains(chatId)) {
@@ -52,11 +49,13 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public String getBotUsername() {
-		return "LuneraScoreBot";
+		return BOT_USERNAME;
+		// return "LuneraScoreBot";
 	}
 
 	@Override
 	public String getBotToken() {
-		return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
+		return BOT_TOKEN;
+		// return "5615146806:AAHuoaSYJnBk9R8HjAZYQARbeynNsp4E_xU";
 	}
 }

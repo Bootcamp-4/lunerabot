@@ -1,4 +1,4 @@
-package com.lunerabot.LuneraBot;
+package com.lunera.bot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
